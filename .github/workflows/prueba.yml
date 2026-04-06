@@ -1,4 +1,4 @@
-name: Prueba de Comunicacion Asus
+name: Despliegue Automatico SOLV
 
 on:
   push:
@@ -6,15 +6,14 @@ on:
       - main 
 
 jobs:
-  saludar-desde-asus:
-    runs-on: self-hosted # Como solo tienes un espía, esto es suficiente por ahora
+  desplegar-en-asus:
+    runs-on: self-hosted
 
     steps:
-      - name: El espía reportándose
+      - name: Descargar el código más reciente
+        uses: actions/checkout@v4
+
+      - name: Construir y Levantar SOLV con Docker Compose
         run: |
-          echo "========================================="
-          echo "¡Misión exitosa, Jefe!"
-          echo "Estoy ejecutando esto desde la Asus con Ubuntu Server"
-          echo "Mi usuario actual es: $(whoami)"
-          echo "Mi sistema es: $(uname -a)"
-          echo "========================================="
+          docker compose down
+          docker compose up -d --build
