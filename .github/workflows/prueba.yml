@@ -3,7 +3,7 @@ name: Despliegue Automatico SOLV
 on:
   push:
     branches:
-      - main 
+      - feature/pruebas-runner 
 
 jobs:
   desplegar-en-asus:
